@@ -103,6 +103,7 @@ MonoBehaviour:
   firstTouchPos: {x: 0, y: 0}
   lastTouchPos: {x: 0, y: 0}
   isMatched: 0
+  scoreValue: 20
   type: 0
   gemEffect: {fileID: 8127758807960465772, guid: cecd5088a263e1d43a6ba4fbfe684637, type: 3}
   bombVolume: 1

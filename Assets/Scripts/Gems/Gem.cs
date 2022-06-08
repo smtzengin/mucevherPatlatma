@@ -21,6 +21,8 @@ public class Gem : MonoBehaviour
 
     Vector2Int firstPos;
 
+    public int scoreValue;
+
 
     public enum GemType
     {
@@ -51,10 +53,10 @@ public class Gem : MonoBehaviour
         }
 
 
-        if (isMousePressed && Input.GetMouseButtonUp(0))
+        if (isMousePressed && Input.GetMouseButtonUp(0) )
         {
             isMousePressed = false;
-            if (board.validState == Board.BoardState.moving)
+            if (board.validState == Board.BoardState.moving && !UIManager.instance.isTourFinished)
             {
                 lastTouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 CalculateAngle();
@@ -72,7 +74,7 @@ public class Gem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(board.validState == Board.BoardState.moving)
+        if(board.validState == Board.BoardState.moving && !UIManager.instance.isTourFinished)
         {
             firstTouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             isMousePressed = true;

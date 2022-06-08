@@ -37,14 +37,6 @@ public class Board : MonoBehaviour
         matchUpController = Object.FindObjectOfType<MatchUpController>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            MixTheBoard();
-        }
-    }
-
 
     void EditFN()
     {
@@ -121,6 +113,15 @@ public class Board : MonoBehaviour
         {
             if (allGems[pos.x, pos.y].isMatched)
             {
+                if (allGems[pos.x,pos.y].type == Gem.GemType.bomb)
+                {
+                    SoundManager.instance.MakeExplosionSound();
+                }
+                else
+                {
+                    SoundManager.instance.MakeGemSound();
+                }
+
                 Instantiate(allGems[pos.x, pos.y].gemEffect, new Vector2(pos.x, pos.y),Quaternion.identity);
                 Destroy(allGems[pos.x, pos.y].gameObject);
                 allGems[pos.x, pos.y] = null;
@@ -134,6 +135,8 @@ public class Board : MonoBehaviour
         {
             if(matchUpController.FoundGemsList[i] != null)
             {
+                UIManager.instance.IncreaseScore(matchUpController.FoundGemsList[i].scoreValue);
+
                 DestroyMatchedGems(matchUpController.FoundGemsList[i].posIndex);
             }
    
