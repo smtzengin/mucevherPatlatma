@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1690266311
+    locked: 0
+  - name: Gems
+    uniqueID: 519785549
+    locked: 0
+  - name: Effects
+    uniqueID: 1373524927
+    locked: 0
