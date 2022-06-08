@@ -3,6 +3,7 @@
 Bu Repo'da Sebahattin Soylu Hocamızın Udemy kursunda bulunan Mücevher Patlatma oyununu öğrendim.
 
 APK Build : https://s6.dosya.tc/server7/5fofbz/Mucevher_Patlatma.apk.html
+
 PC Build : https://www.dosya.tc/server36/3ervc5/MucevherPatlatma.rar.html
 
 ![mainmenu](https://user-images.githubusercontent.com/73519045/172705834-efd464b2-8c6a-4c45-b1ec-d89c3ccde945.png)
