@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
                     tryAgainPanel.SetActive(true);
                 }
             }
-            if (scene1 == SceneManager.GetSceneByName("Level2"))
+            if (scene2 == SceneManager.GetSceneByName("Level2"))
             {
                 if (validScore > 700)
                 {
@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
                     tryAgainPanel.SetActive(true);
                 }
             }
-            if (scene1 == SceneManager.GetSceneByName("Level3"))
+            if (scene3 == SceneManager.GetSceneByName("Level3"))
             {
                 if (validScore > 1000)
                 {
