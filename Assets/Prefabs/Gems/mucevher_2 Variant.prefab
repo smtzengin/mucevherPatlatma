@@ -63,5 +63,13 @@ PrefabInstance:
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3686932573132841125, guid: e8f2ddb497c63614da5ec145e19af5c2, type: 3}
+      propertyPath: gemEffect
+      value: 
+      objectReference: {fileID: 8450299994819997624, guid: fc0c03398ef310a42886c8a6d72be558, type: 3}
+    - target: {fileID: 3686932573132841125, guid: e8f2ddb497c63614da5ec145e19af5c2, type: 3}
+      propertyPath: bombVolume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8f2ddb497c63614da5ec145e19af5c2, type: 3}

@@ -77,6 +77,87 @@ public class MatchUpController : MonoBehaviour
         {
             FoundGemsList = FoundGemsList.Distinct().ToList(); //Ayný mücevher listede 2 kere bulunmamasý için düzeltme yaptýk.
         }
+        FindBomb();
+    }
+
+    //bombayý buluyoruz
+    public void FindBomb()
+    {
+        for (int i = 0; i < FoundGemsList.Count; i++)
+        {
+            Gem gem = FoundGemsList[i];
+            int x = gem.posIndex.x;
+            int y = gem.posIndex.y;
+
+            if(gem.posIndex.x > 0)
+            {
+                if (board.allGems[x-1,y] != null)
+                {
+                    if(board.allGems[x-1,y].type == Gem.GemType.bomb)
+                    {
+                        MarkTheBombSite(new Vector2Int(x - 1, y), board.allGems[x-1,y]);
+                    }
+                }
+            }
+
+
+            if (gem.posIndex.x < board.width-1)
+            {
+                if (board.allGems[x + 1, y] != null)
+                {
+                    if (board.allGems[x + 1, y].type == Gem.GemType.bomb)
+                    {
+                        MarkTheBombSite(new Vector2Int(x + 1, y), board.allGems[x + 1, y]);
+                    }
+                }
+            }
+
+            if (gem.posIndex.y > 0)
+            {
+                if (board.allGems[x, y-1] != null)
+                {
+                    if (board.allGems[x, y-1].type == Gem.GemType.bomb)
+                    {
+                        MarkTheBombSite(new Vector2Int(x , y-1), board.allGems[x, y-1]);
+                    }
+                }
+            }
+
+            if (gem.posIndex.y < board.height-1)
+            {
+                if (board.allGems[x, y + 1] != null)
+                {
+                    if (board.allGems[x, y + 1].type == Gem.GemType.bomb)
+                    {
+                        MarkTheBombSite(new Vector2Int(x, y + 1), board.allGems[x, y + 1]);
+                    }
+                }
+            }
+        }
+
+    }
+
+    public void MarkTheBombSite(Vector2Int bombPos,Gem bomb)
+    {
+        for (int x = bombPos.x-bomb.bombVolume; x <= bombPos.x+bomb.bombVolume; x++)
+        {
+            for (int y = bombPos.y-bomb.bombVolume; y <= bombPos.y+bomb.bombVolume; y++)
+            {
+                if(x>0 && x<board.width-1 && y>=0 && y < board.height - 1)
+                {
+                    if(board.allGems[x,y] != null)
+                    {
+                        board.allGems[x, y].isMatched = true;
+                        FoundGemsList.Add(board.allGems[x, y]);
+
+                    }
+                }
+            }
+        }
+        if (FoundGemsList.Count > 0)
+        {
+            FoundGemsList = FoundGemsList.Distinct().ToList(); //Ayný mücevher listede 2 kere bulunmamasý için düzeltme yaptýk.
+        }
 
     }
 }

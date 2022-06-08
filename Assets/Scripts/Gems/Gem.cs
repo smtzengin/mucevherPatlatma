@@ -28,11 +28,17 @@ public class Gem : MonoBehaviour
         pink,
         yellow,
         peaGreen,
-        darkGreen
+        darkGreen,
+        bomb
        
     };
 
     public GemType type;
+
+    public GameObject gemEffect;
+
+    public int bombVolume;
+    
     private void Update()
     {
         if(Vector2.Distance(transform.position,posIndex) > .01f)

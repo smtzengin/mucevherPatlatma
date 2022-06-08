@@ -22,6 +22,9 @@ public class Board : MonoBehaviour
     };
     public BoardState validState = BoardState.moving;
 
+    public Gem bomb;
+    public float chanceOfBomb = 2f;
+
     private void Start()
     {
         allGems = new Gem[width, height];
@@ -32,6 +35,14 @@ public class Board : MonoBehaviour
     private void Awake()
     {
         matchUpController = Object.FindObjectOfType<MatchUpController>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            MixTheBoard();
+        }
     }
 
 
@@ -69,7 +80,11 @@ public class Board : MonoBehaviour
 
     void CreateGem(Vector2Int pos,Gem newGems)
     {
-        Gem gem = Instantiate(newGems, new Vector3(pos.x, pos.y+height-2, 0f), Quaternion.identity);
+        if(Random.Range(0f,100f)< chanceOfBomb)
+        {
+            newGems = bomb;
+        }
+        Gem gem = Instantiate(newGems, new Vector3(pos.x, pos.y+height, 0f), Quaternion.identity);
         gem.transform.parent = this.transform;
         gem.name = "Mucevher -" + pos.x + ", " + pos.y;
 
@@ -106,6 +121,7 @@ public class Board : MonoBehaviour
         {
             if (allGems[pos.x, pos.y].isMatched)
             {
+                Instantiate(allGems[pos.x, pos.y].gemEffect, new Vector2(pos.x, pos.y),Quaternion.identity);
                 Destroy(allGems[pos.x, pos.y].gameObject);
                 allGems[pos.x, pos.y] = null;
             }
@@ -215,5 +231,51 @@ public class Board : MonoBehaviour
             Destroy(gem.gameObject);
         }
     }
+
+    public void MixTheBoard()
+    {
+        if(validState != BoardState.waiting)
+        {
+            validState = BoardState.waiting;
+
+            List<Gem> gemsOnTheSceneList = new List<Gem>();
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    //sahnedeki mücevherleri bir listeye döküp tüm mücevherleri tutan listeyi null'a çektik
+                    gemsOnTheSceneList.Add(allGems[x, y]);
+                    allGems[x, y] = null;
+                }
+            }
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    //burada sahnedeki tüm mücevherlerin tutulduðu listeyi karýþtýrýp tekrardan sahneye süreceðiz.
+                    int gemsToUse = Random.Range(0, gemsOnTheSceneList.Count);
+
+                    int counter = 0;
+
+                    while(isThereAMatch(new Vector2Int(x, y), gemsOnTheSceneList[gemsToUse]) && counter <100 && gemsOnTheSceneList.Count>1)
+                    {
+                        gemsToUse = Random.Range(0, gemsOnTheSceneList.Count);
+                        counter++;
+                    }
+
+
+                    gemsOnTheSceneList[gemsToUse].EditGem(new Vector2Int(x, y), this);
+                    allGems[x, y] = gemsOnTheSceneList[gemsToUse];
+                    gemsOnTheSceneList.RemoveAt(gemsToUse);
+
+                    StartCoroutine(ScrollToBottom());
+                }
+            }
+        }
+
+    }
+
  }
 

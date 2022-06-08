@@ -102,6 +102,10 @@ MonoBehaviour:
   board: {fileID: 0}
   firstTouchPos: {x: 0, y: 0}
   lastTouchPos: {x: 0, y: 0}
+  isMatched: 0
+  type: 0
+  gemEffect: {fileID: 8127758807960465772, guid: cecd5088a263e1d43a6ba4fbfe684637, type: 3}
+  bombVolume: 1
 --- !u!61 &1407900660277964646
 BoxCollider2D:
   m_ObjectHideFlags: 0
