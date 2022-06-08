@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRemainingTxt: {fileID: 1116221299}
-  timeRemaining: 60
+  timeRemaining: 40
   tourResoultPanel: {fileID: 1267888199}
   isTourFinished: 0
   scoreTxt: {fileID: 854757715}
@@ -1751,7 +1751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60 sn
+  m_text: 40 sn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 564c02acb931e3147aba8dc7bd8ca6a2, type: 2}
   m_sharedMaterial: {fileID: -8543414880301036772, guid: 564c02acb931e3147aba8dc7bd8ca6a2, type: 2}

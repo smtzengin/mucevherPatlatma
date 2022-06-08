@@ -61,14 +61,9 @@ public class UIManager : MonoBehaviour
             SoundManager.instance.GameOverSound();
             isTourFinished = true;  
             tourResoultPanel.SetActive(true);
-            Scene scene1 = SceneManager.GetSceneByName("Level1");
-            Scene scene2 = SceneManager.GetSceneByName("Level2");
-            Scene scene3 = SceneManager.GetSceneByName("Level3");
 
-
-            if (scene1 == SceneManager.GetSceneByName("Level1"))
-            {
-                if (validScore > 300)
+   
+                if (validScore >= 300)
                 {
                     nextLevelPanel.SetActive(true);
                 }
@@ -76,29 +71,7 @@ public class UIManager : MonoBehaviour
                 {
                     tryAgainPanel.SetActive(true);
                 }
-            }
-            if (scene2 == SceneManager.GetSceneByName("Level2"))
-            {
-                if (validScore > 700)
-                {
-                    nextLevelPanel.SetActive(true);
-                }
-                else
-                {
-                    tryAgainPanel.SetActive(true);
-                }
-            }
-            if (scene3 == SceneManager.GetSceneByName("Level3"))
-            {
-                if (validScore > 1000)
-                {
-                    nextLevelPanel.SetActive(true);
-                }
-                else
-                {
-                    tryAgainPanel.SetActive(true);
-                }
-            }
+             
 
         }
     }
